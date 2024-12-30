@@ -8,7 +8,7 @@ import Header from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "GymSync",
+  title: "FitCascade",
   description: "Connecting gym owners, trainers, and fitness enthusiasts",
 };
 
