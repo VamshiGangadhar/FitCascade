@@ -19,7 +19,7 @@ export default function MembersPage() {
       <Card>
         <CardHeader>
           <CardTitle>Member List</CardTitle>
-          <CardDescription>Manage your gym's members</CardDescription>
+          <CardDescription>Manage your gym&apos;s members</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex justify-end mb-4">

@@ -57,7 +57,7 @@ export default function Dashboard() {
           <Card>
             <CardHeader>
               <CardTitle>Gym Management</CardTitle>
-              <CardDescription>Manage your gym's operations</CardDescription>
+              <CardDescription>Manage your gym&apos;s operations</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
               <div className="grid gap-2 sm:grid-cols-2">
