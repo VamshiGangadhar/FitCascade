@@ -1,17 +1,30 @@
-'use client'
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+// import {
+//   LineChart,
+//   Line,
+//   XAxis,
+//   YAxis,
+//   CartesianGrid,
+//   Tooltip as RechartsTooltip,
+//   Legend,
+//   ResponsiveContainer,
+// } from "recharts";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-
-const weightData = [
-  { date: '2023-01-01', weight: 180 },
-  { date: '2023-02-01', weight: 178 },
-  { date: '2023-03-01', weight: 175 },
-  { date: '2023-04-01', weight: 173 },
-  { date: '2023-05-01', weight: 170 },
-  { date: '2023-06-01', weight: 168 },
-]
+// const weightData = [
+//   { date: "2023-01-01", weight: 180 },
+//   { date: "2023-02-01", weight: 178 },
+//   { date: "2023-03-01", weight: 175 },
+//   { date: "2023-04-01", weight: 173 },
+//   { date: "2023-05-01", weight: 170 },
+//   { date: "2023-06-01", weight: 168 },
+// ];
 
 export default function ProgressPage() {
   return (
@@ -24,16 +37,16 @@ export default function ProgressPage() {
             <CardDescription>Track your weight over time</CardDescription>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
+            {/* <ResponsiveContainer width="100%" height={300}>
               <LineChart data={weightData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" />
                 <YAxis />
-                <Tooltip />
+                <RechartsTooltip />
                 <Legend />
                 <Line type="monotone" dataKey="weight" stroke="#8884d8" />
               </LineChart>
-            </ResponsiveContainer>
+            </ResponsiveContainer> */}
           </CardContent>
         </Card>
         <Card>
@@ -60,6 +73,5 @@ export default function ProgressPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
-

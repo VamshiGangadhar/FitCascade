@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Link from 'next/link'
 
 export default function GymGoerDashboard() {
   return (
@@ -31,6 +32,17 @@ export default function GymGoerDashboard() {
           <CardContent>
             <p className="mb-4">Monitor your fitness journey.</p>
             <Button>View Progress</Button>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Calorie Tracker</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="mb-4">Track your daily calorie intake.</p>
+            <Button asChild>
+              <Link href="/calorie-tracker">Open Tracker</Link>
+            </Button>
           </CardContent>
         </Card>
       </div>

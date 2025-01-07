@@ -18,7 +18,7 @@ export default function ClassesPage() {
       <Card>
         <CardHeader>
           <CardTitle>Class Schedule</CardTitle>
-          <CardDescription>Manage your gym&apos;s class schedule</CardDescription>
+          <CardDescription>Manage your gym's class schedule</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
