@@ -4,10 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-// import { useAuth } from "@/contexts/AuthContext";
-
-import { UserAuthForm } from "@/components/user-auth-form";
 import { useAuth } from "../contexts/AuthContext";
+import { UserAuthForm } from "@/components/user-auth-form";
 
 export default function LoginPage() {
   const { isAuthenticated } = useAuth();
@@ -23,27 +21,11 @@ export default function LoginPage() {
   }, [isAuthenticated, router]);
 
   return (
-    <>
-      <div className="md:hidden">
-        <Image
-          src="/examples/authentication-light.png"
-          width={1280}
-          height={843}
-          alt="Authentication"
-          className="block dark:hidden"
-        />
-        <Image
-          src="/examples/authentication-dark.png"
-          width={1280}
-          height={843}
-          alt="Authentication"
-          className="hidden dark:block"
-        />
-      </div>
-      <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-          <div className="absolute inset-0 bg-zinc-900" />
-          <div className="relative z-20 flex items-center text-lg font-medium">
+    <div className="min-h-screen w-full">
+      <div className="container mx-auto flex min-h-screen flex-col lg:grid lg:grid-cols-2 lg:gap-4">
+        {/* Left section - Branding and Testimonial */}
+        <div className="relative flex flex-col bg-zinc-900 p-6 text-white lg:p-10">
+          <div className="flex items-center text-lg font-medium">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -58,7 +40,20 @@ export default function LoginPage() {
             </svg>
             FitCascade
           </div>
-          <div className="relative z-20 mt-auto">
+
+          {/* Hero Images - Visible on all screen sizes */}
+          <div className="my-6 w-full">
+            <Image
+              src="/examples/authentication-dark.png"
+              width={1280}
+              height={843}
+              alt="Authentication"
+              className="hidden w-full rounded-lg object-cover dark:block"
+            />
+          </div>
+
+          {/* Testimonial */}
+          <div className="mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
                 &ldquo;FitCascade has revolutionized how I manage my fitness
@@ -69,8 +64,10 @@ export default function LoginPage() {
             </blockquote>
           </div>
         </div>
-        <div className="lg:p-8">
-          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+
+        {/* Right section - Login Form */}
+        <div className="flex items-center justify-center p-6 lg:p-8">
+          <div className="mx-auto w-full max-w-sm space-y-6">
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">
                 Login to your account
@@ -79,8 +76,10 @@ export default function LoginPage() {
                 Enter your username below to login to your account
               </p>
             </div>
+
             <UserAuthForm />
-            <p className="px-8 text-center text-sm text-muted-foreground">
+
+            <p className="px-2 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{" "}
               <Link
                 href="/terms"
@@ -100,6 +99,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
