@@ -44,6 +44,13 @@ export default function LoginPage() {
           {/* Hero Images - Visible on all screen sizes */}
           <div className="my-6 w-full">
             <Image
+              src="/examples/authentication-light.png"
+              width={1280}
+              height={843}
+              alt="Authentication"
+              className="block w-full rounded-lg object-cover dark:hidden"
+            />
+            <Image
               src="/examples/authentication-dark.png"
               width={1280}
               height={843}
