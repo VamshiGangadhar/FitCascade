@@ -10,11 +10,11 @@ export default function Home() {
       </p>
       <div className="space-x-4">
         <Link href="/gym-owner">
-          <Button size="lg">I'm a Gym Owner</Button>
+          <Button size="lg">I&apos;m a Gym Owner</Button>
         </Link>
         <Link href="/gym-goer">
           <Button size="lg" variant="outline">
-            I'm a Gym-Goer
+            I&apos;m a Gym-Goer
           </Button>
         </Link>
       </div>
