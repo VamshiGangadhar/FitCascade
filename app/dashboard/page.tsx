@@ -86,6 +86,9 @@ export default function Dashboard() {
                   <Link href="/my-workouts"><Button className="w-full">My Workouts</Button></Link>
                   <Link href="/my-diet"><Button className="w-full">My Diet Plan</Button></Link>
                   <Link href="/progress"><Button className="w-full">Track Progress</Button></Link>
+                  <Link href="/calorie-tracker"><Button className="w-full">Calorie Tracker</Button></Link>
+
+                  {/* <link href="/calorie-tracker"><Button className="w-full">Calorie Tracker</Button></link> */}
                 </div>
               </CardContent>
             </Card>
