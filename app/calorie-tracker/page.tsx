@@ -22,6 +22,7 @@ import { useToast } from "@/hooks/use-toast";
 import { API_END_POINT } from "../constants/constants";
 import foodItems from "./foodItems";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 interface FoodItem {
   name: string;
@@ -36,6 +37,7 @@ interface Meal {
 }
 
 export default function CalorieTrackerPage() {
+  // ... state and functions remain the same ...
   const [meals, setMeals] = useState<Meal[]>([]);
   const [mealName, setMealName] = useState("");
   const [selectedFood, setSelectedFood] = useState("");
@@ -99,28 +101,34 @@ export default function CalorieTrackerPage() {
   };
 
   return (
-    <div className="space-y-8 p-6 max-w-4xl mx-auto">
-      {/* Page Header with Navigation */}
-      <header className="flex justify-between items-center mb-8">
-        <div className="text-left">
-          <h1 className="text-4xl font-bold text-teal-700">Calorie Tracker</h1>
-          <p className="text-lg text-gray-600 mt-2">
+    <div className="p-4 sm:p-6 max-w-4xl mx-auto">
+      {/* Responsive Header */}
+      <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <div className="flex-1">
+          <h1 className="text-3xl sm:text-4xl font-bold text-teal-700">
+            Calorie Tracker
+          </h1>
+          <p className="text-base sm:text-lg text-gray-600 mt-2">
             Keep track of your meals and calories effortlessly.
           </p>
         </div>
         <Button
           variant="outline"
-          className="border-teal-400 text-teal-600 hover:bg-teal-50"
+          className="w-full sm:w-auto border-teal-400 text-teal-600 hover:bg-teal-50"
           asChild
         >
-          <Link href="/calorie-tracker/weekly-progress">
-            View Weekly Progress →
+          <Link
+            href="/calorie-tracker/weekly-progress"
+            className="flex items-center justify-center gap-2"
+          >
+            View Weekly Progress
+            <ChevronRight className="h-4 w-4" />
           </Link>
         </Button>
       </header>
 
       {/* Add New Meal Section */}
-      <Card className="shadow-md border border-teal-300">
+      <Card className="shadow-md border border-teal-300 mb-8">
         <CardHeader>
           <CardTitle className="text-lg font-semibold text-orange-600">
             Add New Meal
@@ -130,8 +138,7 @@ export default function CalorieTrackerPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          {/* Rest of the component remains the same */}
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <Select value={mealName} onValueChange={setMealName}>
               <SelectTrigger className="w-full border-teal-400">
                 <SelectValue placeholder="Select meal type" />
@@ -180,7 +187,7 @@ export default function CalorieTrackerPage() {
               </h3>
               <ul className="list-disc list-inside space-y-1 text-gray-600">
                 {currentMeal.map((item, index) => (
-                  <li key={index}>
+                  <li key={index} className="break-words">
                     {item.name} - {item.weight}g
                   </li>
                 ))}
@@ -198,7 +205,7 @@ export default function CalorieTrackerPage() {
 
       {/* Today's Meals Section */}
       <Card className="shadow-md border border-orange-300">
-        <CardHeader className="flex items-center justify-between">
+        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <CardTitle className="text-lg font-semibold text-orange-600">
             Today&apos;s Meals
           </CardTitle>
@@ -230,35 +237,39 @@ export default function CalorieTrackerPage() {
         <CardContent>
           {meals.length > 0 ? (
             <div className="space-y-4">
-              <div className="text-lg font-semibold text-orange-700">
+              <div className="text-base sm:text-lg font-semibold text-orange-700 p-2 bg-orange-50 rounded-lg">
                 Total Calories Today:{" "}
                 {meals.reduce((sum, meal) => sum + meal.totalCalories, 0)}
               </div>
-              {meals.map((meal, index) => (
-                <div
-                  key={index}
-                  className="border p-4 rounded-lg shadow-sm bg-teal-50 border-teal-300"
-                >
-                  <div className="flex justify-between mb-2">
-                    <span className="font-semibold text-teal-800">
-                      {meal.mealName}
-                    </span>
-                    <span className="text-gray-600">
-                      {meal.totalCalories} calories
-                    </span>
+              <div className="grid gap-4">
+                {meals.map((meal, index) => (
+                  <div
+                    key={index}
+                    className="border p-4 rounded-lg shadow-sm bg-teal-50 border-teal-300"
+                  >
+                    <div className="flex flex-col sm:flex-row justify-between mb-2 gap-2">
+                      <span className="font-semibold text-teal-800">
+                        {meal.mealName}
+                      </span>
+                      <span className="text-gray-600">
+                        {meal.totalCalories} calories
+                      </span>
+                    </div>
+                    <ul className="list-disc list-inside text-gray-600 break-words">
+                      {meal.foodItems.map((item, index) => (
+                        <li key={index} className="text-sm sm:text-base">
+                          {item.name} - {item.weight}g
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="list-disc list-inside text-gray-600">
-                    {meal.foodItems.map((item, index) => (
-                      <li key={index}>
-                        {item.name} - {item.weight}g
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           ) : (
-            <p className="text-gray-500">No meals recorded for today.</p>
+            <p className="text-gray-500 text-center py-4">
+              No meals recorded for today.
+            </p>
           )}
         </CardContent>
       </Card>

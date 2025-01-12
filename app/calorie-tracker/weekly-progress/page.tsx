@@ -98,6 +98,7 @@ export default function WeeklyProgressPage() {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,
@@ -115,6 +116,10 @@ export default function WeeklyProgressPage() {
         title: {
           display: true,
           text: "Date",
+        },
+        ticks: {
+          maxRotation: 45,
+          minRotation: 45,
         },
       },
       y: {
@@ -142,16 +147,18 @@ export default function WeeklyProgressPage() {
   };
 
   return (
-    <div className="space-y-8 p-6 max-w-4xl mx-auto">
-      {/* Header with Navigation */}
-      <div className="flex justify-between items-center mb-8">
-        <div className="text-left">
-          <h1 className="text-4xl font-bold text-teal-700">Weekly Progress</h1>
-          <p className="text-lg text-gray-600 mt-2">
+    <div className="p-4 sm:p-6 max-w-4xl mx-auto space-y-6">
+      {/* Responsive Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-teal-700">
+            Weekly Progress
+          </h1>
+          <p className="text-base sm:text-lg text-gray-600 mt-2">
             Track your calorie consumption over the past week
           </p>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-2 w-full sm:w-auto">
           <Button
             variant="outline"
             size="icon"
@@ -162,7 +169,7 @@ export default function WeeklyProgressPage() {
           </Button>
           <Button
             variant="outline"
-            className="border-teal-400 text-teal-600 hover:bg-teal-50 flex items-center gap-2"
+            className="flex-1 sm:flex-none border-teal-400 text-teal-600 hover:bg-teal-50 flex items-center gap-2"
             asChild
           >
             <Link href="/calorie-tracker">
@@ -181,55 +188,57 @@ export default function WeeklyProgressPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {loading ? (
-            <div className="flex justify-center items-center h-64">
-              <p className="text-gray-500 flex items-center gap-2">
-                <RefreshCw className="h-4 w-4 animate-spin" />
-                Loading data...
-              </p>
-            </div>
-          ) : Object.keys(aggregatedData).length > 0 ? (
-            <Line data={chartData} options={chartOptions} />
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-500">
-                No data available for the past week.
-              </p>
-            </div>
-          )}
+          <div className="h-[300px] sm:h-[400px]">
+            {loading ? (
+              <div className="flex justify-center items-center h-full">
+                <p className="text-gray-500 flex items-center gap-2">
+                  <RefreshCw className="h-4 w-4 animate-spin" />
+                  Loading data...
+                </p>
+              </div>
+            ) : Object.keys(aggregatedData).length > 0 ? (
+              <Line data={chartData} options={chartOptions} />
+            ) : (
+              <div className="flex justify-center items-center h-full">
+                <p className="text-gray-500">
+                  No data available for the past week.
+                </p>
+              </div>
+            )}
+          </div>
         </CardContent>
       </Card>
 
       {/* Daily Breakdown */}
-      <div className="space-y-6">
+      <div className="space-y-4">
         {Object.entries(mealsByDate).map(([date, meals]) => (
           <Card key={date} className="shadow-md border border-teal-300">
-            <CardHeader className="flex flex-row items-center justify-between">
-              <div>
+            <CardHeader className="pb-3">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                 <CardTitle className="text-md font-medium">{date}</CardTitle>
-                <p className="text-sm text-gray-500 mt-1">
+                <div className="text-sm text-orange-600 font-medium px-2 py-1 bg-orange-50 rounded-md">
                   Total: {calculateDailyTotal(meals)} calories
-                </p>
+                </div>
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
+            <CardContent className="pt-0">
+              <div className="space-y-3">
                 {meals.map((meal) => (
                   <div
                     key={meal._id}
                     className="bg-teal-50 p-4 rounded-lg border border-teal-200"
                   >
-                    <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-lg font-semibold text-teal-700">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-2">
+                      <h3 className="text-base font-semibold text-teal-700">
                         {meal.mealName}
                       </h3>
-                      <span className="text-orange-600 font-medium">
+                      <span className="text-sm text-orange-600 font-medium">
                         {meal.totalCalories} calories
                       </span>
                     </div>
-                    <ul className="list-disc list-inside space-y-1 text-gray-700">
+                    <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm">
                       {meal.foodItems.map((item) => (
-                        <li key={item._id}>
+                        <li key={item._id} className="break-words">
                           {item.name} - {item.weight}g ({item.calories}{" "}
                           calories)
                         </li>
