@@ -18,6 +18,7 @@ const foodItems = [
   "dosa",
   "drumstick",
   "eggs",
+  "Finger Millet Malt",
   "ghee",
   "grapes",
   "idli",
