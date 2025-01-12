@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -42,7 +41,7 @@ export default function LoginPage() {
           </div>
 
           {/* Hero Images - Visible on all screen sizes */}
-          <div className="my-6 w-full">
+          {/* <div className="my-6 w-full">
             <Image
               src="/examples/authentication-light.png"
               width={1280}
@@ -57,7 +56,7 @@ export default function LoginPage() {
               alt="Authentication"
               className="hidden w-full rounded-lg object-cover dark:block"
             />
-          </div>
+          </div> */}
 
           {/* Testimonial */}
           <div className="mt-auto">

@@ -21,6 +21,7 @@ import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import { API_END_POINT } from "../constants/constants";
 import foodItems from "./foodItems";
+import Link from "next/link";
 
 interface FoodItem {
   name: string;
@@ -99,14 +100,23 @@ export default function CalorieTrackerPage() {
 
   return (
     <div className="space-y-8 p-6 max-w-4xl mx-auto">
-      {/* Page Header */}
-      <header className="text-center">
-        <h1 className="text-4xl font-bold text-teal-700 mb-4">
-          Calorie Tracker
-        </h1>
-        <p className="text-lg text-gray-600">
-          Keep track of your meals and calories effortlessly.
-        </p>
+      {/* Page Header with Navigation */}
+      <header className="flex justify-between items-center mb-8">
+        <div className="text-left">
+          <h1 className="text-4xl font-bold text-teal-700">Calorie Tracker</h1>
+          <p className="text-lg text-gray-600 mt-2">
+            Keep track of your meals and calories effortlessly.
+          </p>
+        </div>
+        <Button
+          variant="outline"
+          className="border-teal-400 text-teal-600 hover:bg-teal-50"
+          asChild
+        >
+          <Link href="/calorie-tracker/weekly-progress">
+            View Weekly Progress →
+          </Link>
+        </Button>
       </header>
 
       {/* Add New Meal Section */}
@@ -120,8 +130,8 @@ export default function CalorieTrackerPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          {/* Rest of the component remains the same */}
           <div className="grid gap-6 md:grid-cols-3">
-            {/* Meal Type */}
             <Select value={mealName} onValueChange={setMealName}>
               <SelectTrigger className="w-full border-teal-400">
                 <SelectValue placeholder="Select meal type" />
@@ -134,7 +144,6 @@ export default function CalorieTrackerPage() {
               </SelectContent>
             </Select>
 
-            {/* Food Item */}
             <Select value={selectedFood} onValueChange={setSelectedFood}>
               <SelectTrigger className="w-full border-teal-400">
                 <SelectValue placeholder="Select food item" />
@@ -148,7 +157,6 @@ export default function CalorieTrackerPage() {
               </SelectContent>
             </Select>
 
-            {/* Weight Input */}
             <Input
               type="number"
               placeholder="Weight (g)"
@@ -158,7 +166,6 @@ export default function CalorieTrackerPage() {
             />
           </div>
 
-          {/* Add Food Button */}
           <Button
             onClick={addFoodItem}
             className="text-white bg-orange-500 hover:bg-orange-600 w-full"
@@ -166,7 +173,6 @@ export default function CalorieTrackerPage() {
             Add Food Item
           </Button>
 
-          {/* Current Meal */}
           {currentMeal.length > 0 && (
             <div className="bg-teal-50 p-4 rounded-lg shadow-md border border-teal-300">
               <h3 className="text-lg font-semibold text-teal-700 mb-2">
