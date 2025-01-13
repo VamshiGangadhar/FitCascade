@@ -37,7 +37,6 @@ interface Meal {
 }
 
 export default function CalorieTrackerPage() {
-  // ... state and functions remain the same ...
   const [meals, setMeals] = useState<Meal[]>([]);
   const [mealName, setMealName] = useState("");
   const [selectedFood, setSelectedFood] = useState("");
