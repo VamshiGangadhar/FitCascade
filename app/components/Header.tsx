@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <header className="bg-background border-b">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold">
+        <Link href="/dashboard" className="text-2xl font-bold">
           FitCascade
         </Link>
         <div className="flex items-center space-x-4">

@@ -34,8 +34,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         // Store the token in localStorage
         console.log(response.data);
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("role", response.data.role);
-        localStorage.setItem("user_id", response.data.id);
+        localStorage.setItem("role", response.data.user.role);
+        localStorage.setItem("gym", response.data.user.gym);
+        localStorage.setItem("user_id", response.data.user.id);
         toast({
           title: "Success",
           description: "Logged in successfully",
